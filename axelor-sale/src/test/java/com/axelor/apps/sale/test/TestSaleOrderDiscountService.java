@@ -37,7 +37,7 @@ import org.junit.jupiter.api.Test;
 
 class TestSaleOrderDiscountService extends BaseTest {
 
-  protected static final int SCALE_VALUE = 10;
+  protected static final int SCALE_VALUE = 2;
 
   protected final PriceListService priceListService;
   protected final CurrencyService currencyService;
@@ -99,7 +99,7 @@ class TestSaleOrderDiscountService extends BaseTest {
     saleOrder.setSaleOrderLineList(new ArrayList<>());
     saleOrder.addSaleOrderLineListItem(
         createSaleOrderLine(
-            BigDecimal.valueOf(80).setScale(SCALE_VALUE, RoundingMode.HALF_UP), BigDecimal.TEN));
+            BigDecimal.valueOf(80).setScale(SCALE_VALUE, RoundingMode.HALF_UP), BigDecimal.ONE));
     saleOrder.addSaleOrderLineListItem(
         createSaleOrderLine(
             BigDecimal.valueOf(22).setScale(SCALE_VALUE, RoundingMode.HALF_UP), BigDecimal.ONE));
@@ -119,7 +119,7 @@ class TestSaleOrderDiscountService extends BaseTest {
     saleOrder.setDiscountAmount(BigDecimal.TEN);
     saleOrderDiscountService.applyGlobalDiscountOnLines(saleOrder);
     Assertions.assertEquals(
-        BigDecimal.valueOf(739.8).setScale(SCALE_VALUE, RoundingMode.HALF_UP),
+        BigDecimal.valueOf(91.8).setScale(SCALE_VALUE, RoundingMode.HALF_UP),
         saleOrder.getExTaxTotal());
   }
 
@@ -129,7 +129,7 @@ class TestSaleOrderDiscountService extends BaseTest {
     saleOrder.setDiscountAmount(BigDecimal.TEN);
     saleOrderDiscountService.applyGlobalDiscountOnLines(saleOrder);
     Assertions.assertEquals(
-        BigDecimal.valueOf(812).setScale(SCALE_VALUE, RoundingMode.HALF_UP),
+        BigDecimal.valueOf(92).setScale(SCALE_VALUE, RoundingMode.HALF_UP),
         saleOrder.getExTaxTotal());
   }
 }
